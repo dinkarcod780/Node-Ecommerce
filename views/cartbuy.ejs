@@ -1,0 +1,240 @@
+<%- include("partials/header")%>
+<%- include("partials/nav")%>
+<script src="https://cdn.tailwindcss.com"></script>
+<h1 class="text-3xl text-center  py-3 mt-[4%]">PRODUCT BUY</h1>
+ <div class="h-[76vh] flex w-[90%]  ml-[5%] mt-6 justify-evenly ">
+ 
+  
+  <div class="h-fit w-fit  border-2">
+    
+    <h1 class="text-3xl text-center mt-9">₹<%=products.price%></h1>
+    <div class="h-[0.2vh] w-[30%] border-dotted border-2 border-slate-200 mt-[8%]  flex m-auto"></div>
+    <h1 class="text-2xl text-center mt-6">Usually delivered in3-4 days</h1>
+    <div class="h-[14vh] flex items-center w-[49%]  m-auto mt-5 justify-center gap-5">
+      <div class=" h-fit w-fit bg-blue-500 rounded-md hover:shadow-md">
+        <a href="" class="ri-facebook-fill text-4xl text-white "></a>
+      </div>
+
+      <div class="h-fit w-fit bg-black rounded-md hover:shadow-md">
+        <a href="" class="ri-github-fill text-4xl text-white "></a>
+      </div>
+
+      <div class="h-fit w-fit flex items-center bg-orange-900 rounded-md hover:shadow-md">
+        <a href="" class="ri-instagram-line text-4xl text-white "></a>
+      </div>
+    </div>
+    <div class="flex justify-around px-3">
+    <div class="mt-5 ml-5 px-3">
+      <h1 class="text-[1.5vw]"><%=products.name%></h1>
+      <h1 class="text-[1.5vw]"><%=products.description%></h1>
+      <h1 class="text-[1.5vw]"><%=products.category%></h1>
+    </div>
+    <div>
+      <button class="py-2 px-3 bg-orange-900 rounded-md text-white hover:bg-orange-800 mt-10"  id="rzp-button1">Buy Now</button>
+    </div>
+  </div>
+   
+  </div>
+  <div class="h-[71vh] w-[45%]   border-2">
+    <div class="h-[60vh] w-[90%]  m-auto mt-6">
+      <img class=" h-[60vh] w-[100%]  bg-no-repeat bg-cover bg-center object-cover " src="/images/<%=products.productImag%>" alt="">
+    </div>
+  </div>
+ 
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+  var orderId ;
+    $(document).ready(function(){
+        var settings = {
+      "url": "/create/orderId",
+      "method": "POST",
+      "timeout": 0,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "data": JSON.stringify({
+        "amount": "50000",
+        "productId":"6234"
+      }),
+    };
+    
+    //creates new orderId everytime
+    $.ajax(settings).done(function (response) {
+     
+      var options = {
+    "key":"rzp_test_gAA84KF0PPmYQC", // Enter the Key ID generated from the Dashboard
+    "amount": response.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": response.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)
+    },
+    
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+    
+      orderId=response.id;
+      console.log(orderId);
+      $("button").show();
+    });
+    });
+    </script>
+
+
+
+
+
+
+
+
+
+
+<div class="details h-[90vh] w-[90%]  mt-[5%]  ml-[5%]">
+    <a class="text-2xl ml-[42%]" href="/">Product Details</a>
+    <div class="line h-[0.2vh] w-[50%] ml-[21%] bg-neutral-400"></div>
+    <div class="line h-[0.1vh] w-[14%] ml-[40%] bg-orange-500 mb-[6%]"></div>
+
+ <p class=" text-[18px] ">A belt boosts your confidence multi-folds. It not just keeps your pants in place, it also gives you the confidence to walk with attitude.</p>
+
+ <div class="rating h-[50vh] w-[50%] mt-[7%]">
+  <h1 class="text-3xl font-normal">Ratings</h1>
+  <div class="h-[5vh] w-[35%] mt-4  cursor-pointer flex"><i class="text-neutral-400 hover:text-orange-500 ri-star-fill"></i>
+    <i  class="text-neutral-400 hover:text-orange-500 ri-star-fill"></i>
+    <i class="text-neutral-400 hover:text-orange-500 ri-star-fill"></i>
+    <i class="text-neutral-400 hover:text-orange-500 ri-star-fill"></i>
+    <i class="text-neutral-400 hover:text-orange-500 ri-star-fill"></i>
+    <div class="h-[4vh] w-[10.5%] ml-4 bg-blue-500 rounded-full cursor-pointer">
+    <img class="rounded-full bg-no-repeat bg-cover bg-center cursor-pointer" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQBE7PoYao3LRLVTJnRkjj_15RUc2NOWnz5o74mvoEG5Fe-W_jG" alt="">
+    </div>
+  </div>
+  <h1 class="text-xl">0.0 / 5 (No Ratings)</h1>
+  <h2 class="text-3xl font-normal">Reviews</h2>
+  <h2 class="text-xl mt-4">There aren't any reviews to display.</h2>
+  <h1 class="text-xl mt-[7%]">Only Verified Buyer can review</h1>
+ </div>
+
+ </div>
+
+
+ <div class="goods">
+    <div class="goods-head w-[50%]"><h1>Recommended Products</h1></div>
+    <div class="product-collection">
+      <div class="total-collection">
+        <div class="packet-1"> <img src="https://leather-zone-demo.zohocommerce.com/product-images/product-01-01.png/2276989000000069325/300x300" alt="">
+        <div class="cart">
+          <a href="/">Quick View</a>
+          <div class="line"></div>
+          <a href="/">Add to Cart</a>
+        </div>
+        </div>
+        <div class="artificial"><a href="/">Artificial Leather Wallet</a>
+        <h3>$10.00</h3>
+        </div>
+      </div>
+      <div class="total-collection">
+        <div class="packet-1"> <img src="https://leather-zone-demo.zohocommerce.com/product-images/product-03-01.png/2276989000000070900/300x300" alt="">
+          <div class="cart">
+            <a href="/">Quick View</a>
+            <div class="line"></div>
+            <a href="/">Add to Cart</a>
+          </div>
+          </div>
+          <div class="artificial "><a href="/">Casual Black Genuine Leather</a>
+          <h3>$12.00</h3>
+          </div>
+      </div>
+      <div class="total-collection">
+        <div class="packet-1"> <img src="https://leather-zone-demo.zohocommerce.com/product-images/product-09-01.png/2276989000000069373/300x300" alt="">
+          <div class="cart">
+            <a href="/">Quick View</a>
+            <div class="line"></div>
+            <a href="/">Add to Cart</a>
+          </div>
+          </div>
+          <div class="artificial"><a href="/">Exclusive Formal Shoe Derby For Men</a>
+          <h3>$15.00- $25.00</h3>
+          </div>
+      </div>
+    </div>
+    </div>
+  
+    <div class="footer">
+        <div class="subscribe">
+          <div class="first-subscribe">
+            <h1>Subscribe to our newsletter</h1>
+          </div>
+          <div class="connect ml-[5%]">
+        <form action="/subscribe" method="post">
+          <input type="text" placeholder="Name" name="name">
+          <input type="text" placeholder="Email" name="email">
+          <button class="bg-green-400">Subscribe</button>
+        </form>
+          </div>
+        </div>
+        <div class="pay">
+          <div class="pay-dami">
+            <h1>Company</h1>
+            <h2>About Us</h2>
+            <h3>Careers</h3>
+            <h4>Press</h4>
+            <h5>Sell with Us</h5>
+          </div>
+          <div class="pay-dami">
+            <h1>Help</h1>
+            <h2>Payments</h2>
+            <h3>Shipping</h3>
+            <h4>Return & Cancellation</h4>
+            <h5>FAQ</h5>
+          </div>
+          <div class="pay-dami">
+            <h1>Terms and Policies</h1>
+            <h2>Privacy Policies</h2>
+            <h3>Support Policies</h3>
+            <h4>Terms of Sales</h4>
+            <h6>Pay with</h6>
+            <div class="visa">
+              <a href=""><img src="https://static.zohocdn.com/sites/stock-images/images/zpstock-image-758.png" alt=""></a>
+            </div>
+            
+          </div>
+          <div class="pay-dami">
+            <h1>Contact Us</h1>
+            <h2><i class="ri-phone-line"></i>   +91-7808426662</h2>
+            <h3><a href="https://github.com/dinkarcod780" class="ri-github-line">https://github.com/dinkarcod780</a></h3>
+            <h4><a href="https://www.linkedin.com/in/dinkar-diwakar-038599257/" class="ri-linkedin-box-fill">LinkedIn</a></h4>
+          </div>
+        </div>
+        <div class="pay-line"></div>
+        <div class="names">
+         <h1>Develop By Dinkar Paswan</h1>
+        </div>
+      </div>
+
+
+<%- include("partials/footer")%>

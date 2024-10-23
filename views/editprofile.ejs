@@ -1,0 +1,18 @@
+<%- include("partials/header")%>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<div class="conatiner h-[100vh] w-[100%] bg-black overflow-hidden bg-no-repeat bg-cover bg-center bg-[url('https://images.unsplash.com/photo-1490173032805-2f6274a01334?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] ">
+    <h1 class="text-4xl bg-red-400 py-2 text-center font-semibold text-white">Update Profile</h1>
+<form class="h-[100vh] w-[100%] py-2 items-center  flex flex-col" action="/editprofile/<%=currentUser._id%>" method="post">
+   <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" type="text" placeholder="Name" value="<%=currentUser.name%>" name="name">
+   <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" type="text" placeholder="Username" value="<%=currentUser.username%>" name="username"> 
+   <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" type="text" placeholder="Email" value="<%=currentUser.email%>" name="email">
+   <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" type="text" placeholder="Phone No."  value="<%=currentUser.number%>"   name="number">
+   <textarea class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" placeholder="<%=currentUser.address%>" name="address"></textarea> 
+   <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" type="text" placeholder="Pin Code" value="<%=currentUser.pincode%>" name="pincode"> 
+   <button class="bg-green-800 text-white  w-[40%] mb-4 p-3 rounded-md hover:bg-green-600 text-xl">Update Profile</button>
+</form>
+</div>
+
+
+<%- include("partials/footer")%>

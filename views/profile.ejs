@@ -1,0 +1,21 @@
+<%- include("partials/header")%>
+<%- include("partials/nav")%>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<div class="conatiner h-[110vh] w-[100%] bg-black overflow-hidden bg-no-repeat bg-cover bg-center bg-[url('https://images.unsplash.com/photo-1690321607822-669326f4e3cc?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] ">
+    <h1 class="text-4xl py-2 text-center font-semibold text-white">User Profile</h1>
+<form class="h-[100vh] w-[100%] py-2 items-center  flex flex-col" action="/profile" method="post">
+   <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" type="text" placeholder="Name" value="<%=user.name%>" name="name">
+   <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" type="text" placeholder="Username"  value="<%=user.username%>" name="username"> 
+   <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" type="text" placeholder="Email"  value="<%=user.email%>" name="email">
+   <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" type="text" placeholder="Phone No." value="<%=user.number%>" name="number">
+   <textarea class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" placeholder="<%=user.address%>" name="address"></textarea> 
+   <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" type="text" placeholder="Pin Code"  value="<%=user.pincode%>" name="pincode"> 
+   <a href="/editprofile/<%=user._id%>" class="bg-green-800 text-white  w-[40%] mb-4 p-3 text-center rounded-md hover:bg-green-600 text-xl">Edit Profile</a>
+   <a class="w-[40%] text-left text-green-800"href="/delete/<%=user._id%>">Delete Account?</a>
+   <a class="w-[40%] text-left text-green-800"href="/resetpassword">Reset Password</a>
+</form>
+</div>
+
+
+<%- include("partials/footer")%>

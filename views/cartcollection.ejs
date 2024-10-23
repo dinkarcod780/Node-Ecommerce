@@ -1,0 +1,15 @@
+<%- include("partials/header")%>
+<%- include("partials/nav")%>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<h1>Admin cart</h1>
+<form action="/cartcollection" method="post">
+    <input class="border-2" type="file">
+    <input class="border-2" type="text" placeholder="productname" name="productname">
+    <input class="border-2" type="text" placeholder="productprice" name="productprice">
+    <button>Submit</button>
+
+</form>
+
+<%- include("partials/footer")%>

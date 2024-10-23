@@ -1,0 +1,22 @@
+<%- include("partials/header")%>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<div class="conatiner h-[110vh] w-[100%] bg-black overflow-hidden bg-no-repeat bg-cover bg-center bg-[url('https://images.unsplash.com/photo-1490173032805-2f6274a01334?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] ">
+    <h1 class="text-4xl bg-red-400 py-2 text-center font-semibold text-white">Admin Page</h1>
+<form class="h-[100vh] w-[100%] py-2 items-center  flex flex-col" action="/admin" method="post" enctype="multipart/form-data">
+   <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" type="text" placeholder="Name" name="name">
+   <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" type="text" placeholder="Username" name="username"> 
+   <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" type="text" placeholder="Email" name="email">
+   <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" type="text" placeholder="Phone No." name="number">
+   
+   <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-md" type="text" placeholder="Password" name="password"> 
+   <!-- <input class="border-solid border-2 border-black-600    w-[40%] mb-4 boder-boder-zinc-500 p-2 rounded-m" type="file" name="view">
+   <button class="bg-green-800 text-white  w-[40%] mb-4 p-3 rounded-md hover:bg-green-600 text-xl">Submit</button> -->
+   <!-- <p class=" w-[40%] text-white text-left ">Already have an account? <a class="text-red-400"
+    href="/login">Login</a>
+</p> -->
+</form>
+</div>
+
+
+<%- include("partials/footer")%>

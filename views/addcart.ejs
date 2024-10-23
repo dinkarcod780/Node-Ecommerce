@@ -1,0 +1,99 @@
+<%- include("partials/header")%>
+<%- include("partials/nav")%>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<div class="min-h-screen w-[100%] ">
+
+  <div class=" py-3 px-[3%] w-[93%]  ml-5 mt-6 shadow-md border-b-2 border-b-bg-gray-50">
+    <div class="flex flex-nowrap mt-[3%]"><h1 class="text-[1.5vw] ">Items</h1>
+      <div class="relative flex justify-end gap-[20%] ml-[35%] text-[1.5vw] w-[55%] ">
+        <h2>Size</h2>
+        <h2>Subtotal</h2>
+        <h2>Remove</h2>
+        </div>
+    </div>
+ 
+</div>
+  <% allcart.forEach(cartt=>{%>
+    <div class=" flex w-[93%] h-[28vh] ml-9 border-b-2 shadow-md  gap-3 mt-7">
+      <a href="/cartbuy/<%=cartt._id%>">
+      <div class="h-[20vh] w-[13vw]  ">
+        <img class=" h-[20vh] w-[13vw] bg-cover bg-center bg-no-repeat object-cover " src="/images/<%=cartt.productImag%>" alt="">
+        </div>
+      </a>
+        <div class="h-[22vh] w-[19vw] ">
+        <a href="/cartbuy/<%=cartt._id%>" class="text-[1.4vw] hover:text-orange-700"><%=cartt.name%></a>
+        <h2 class="text-[1.7vw]  mt-2"><%=cartt.category%></h2>
+        <h2 class="text-[1.5vw] mt-2">$<%=cartt.price%></h2>
+        </div>
+        <div class="h-[26vh] w-[35vw]  flex ml-[16%] justify-between items-center ">
+          <h1 class="text-[1.5vw]"><%=cartt.category%></h1>
+          <h1 class="text-[1.5vw] hover:shadow-xl">$<%=cartt.price%></h1>
+          <a class=" text-red-500 text-[1.5vw] rounded p-2 ri-delete-bin-6-line mr-3 hover:shadow-md" href='/deletecart/<%=cartt._id%>'></a>
+
+           </div>
+    </div>
+   
+<%})%>
+
+</div>
+
+
+<div class="footer">
+  <div class="subscribe">
+    <div class="first-subscribe">
+      <h1>Subscribe to our newsletter</h1>
+    </div>
+    <div class="connect ml-[5%]">
+  <form action="/subscribe" method="post">
+    <input type="text" placeholder="Name" name="name">
+    <input type="text" placeholder="Email" name="email">
+    <button class="bg-green-400">Subscribe</button>
+  </form>
+    </div>
+  </div>
+  <div class="pay">
+    <div class="pay-dami">
+      <h1>Company</h1>
+      <h2>About Us</h2>
+      <h3>Careers</h3>
+      <h4>Press</h4>
+      <h5>Sell with Us</h5>
+    </div>
+    <div class="pay-dami">
+      <h1>Help</h1>
+      <h2>Payments</h2>
+      <h3>Shipping</h3>
+      <h4>Return & Cancellation</h4>
+      <h5>FAQ</h5>
+    </div>
+    <div class="pay-dami">
+      <h1>Terms and Policies</h1>
+      <h2>Privacy Policies</h2>
+      <h3>Support Policies</h3>
+      <h4>Terms of Sales</h4>
+      <h6>Pay with</h6>
+      <div class="visa">
+        <a href=""><img src="https://static.zohocdn.com/sites/stock-images/images/zpstock-image-758.png" alt=""></a>
+      </div>
+      
+    </div>
+    <div class="pay-dami">
+      <h1>Contact Us</h1>
+      <h2><i class="ri-phone-line"></i>   +91-7808426662</h2>
+      <h3><a href="https://github.com/dinkarcod780" class="ri-github-line">https://github.com/dinkarcod780</a></h3>
+      <h4><a href="https://www.linkedin.com/in/dinkar-diwakar-038599257/" class="ri-linkedin-box-fill">LinkedIn</a></h4>
+    </div>
+  </div>
+  <div class="pay-line"></div>
+  <div class="names">
+   <h1>Develop By Dinkar Paswan</h1>
+  </div>
+</div>
+
+
+
+ 
+
+
+<%- include("partials/footer")%>

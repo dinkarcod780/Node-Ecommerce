@@ -1,0 +1,178 @@
+<%- include("partials/header")%>
+<%- include("partials/nav")%>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<div class="belts h-[81vh] w-[90%]  ml-[5.5%] mt-[5%] flex gap-12">
+   <div class="h-[80vh] w-[40vw]  ">
+   <img class="overflow-hidden bg-no-repeat bg-cover bg-center h-[65vh] w-[40vw]" src="https://leather-zone-demo.zohocommerce.com/category-images/category-belt.jpg/2276989000000069297/500x500" alt="">
+   <div class=" flex  h-[15vh] w-[100%]  mb[20%]">
+    <h2 class="text-2xl text-white bg-slate-900 h-[8vh] px-5 mt-4 rounded ">₹100</h2>
+    <div class="size ml-[22%]">
+      <form action="/size" method="post">
+        <h2 class="text-2xl text-black">Size</h2>
+        <select class="choose" name="belt">
+          <option value="/">28</option>
+          <option value="/">30</option>
+          <option value="/">32</option>
+          <option value="/">34</option>
+          <option value="/">36</option>
+          <option value="/">38</option>
+          <option value="/">40</option>
+        </select> 
+        <button class="py-3 px-4 bg-green-400 hover:bg-green-600 rounded-md">Submit</button>  
+      </form>
+    </div>
+    <div class="ml-[auto] mt-4">
+   <button class="py-3 px-5 bg-yellow-400 hover:bg-yellow-500 font-semibold rounded-md" id="rzp-button1">Buy now</button>
+  </div>
+   </div>
+   
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+  var orderId ;
+    $(document).ready(function(){
+        var settings = {
+      "url": "/create/orderId",
+      "method": "POST",
+      "timeout": 0,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "data": JSON.stringify({
+        "amount": "50000",
+        "productId":"6234"
+      }),
+    };
+    
+    //creates new orderId everytime
+    $.ajax(settings).done(function (response) {
+     
+      var options = {
+    "key":"rzp_test_gAA84KF0PPmYQC", // Enter the Key ID generated from the Dashboard
+    "amount": response.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": response.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)
+    },
+    
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+    
+      orderId=response.id;
+      console.log(orderId);
+      $("button").show();
+    });
+    });
+    </script>
+   </div> 
+   <div class="belts h-[30vh] w-[48%] mt-[10%]">
+    <h1 class="text-4xl font-light">Belts</h1>
+    <p class="text-lg mt-3">'Jeans represent democracy in fashion' stated Giorgio Armani.Belts hold democracy in place says Me!</p>
+   </div>
+</div>
+
+<div class="product h-[89vh] w-[70%]  flex mt-[9%] ml-[5.5%]">
+<div class="img h-[80vh] w-[45%]  border-2 border-solid-black">
+   <div class="h-[45vh] w-[100%] ">
+    <img class=" h-[45vh] w-[79%] ml-[7%] bg-no-repeat bg-cover bg-center" src="https://leather-zone-demo.zohocommerce.com/product-images/product-05-01.png/2276989000000069311/300x300" alt="">
+    <div class="h-[15vh] w-[100%] mt-[19%]">
+      <a class=" text-center hover:text-yellow-600 ml-[40%] "href="/ladiesbelt">LADIES BELT</a>
+      <h1 class=" text-center mt-[5%]">$10.00-$15.00</h1>
+    </div>
+   
+   </div>
+</div>
+
+<div class="img h-[80vh] w-[45%]  border-2 border-solid-black">
+  <div class="h-[45vh] w-[100%] ">
+   <img class=" h-[45vh] w-[79%] ml-[7%] bg-no-repeat bg-cover bg-center" src="https://leather-zone-demo.zohocommerce.com/product-images/product-04-01.png/2276989000000070846/300x300" alt="">
+   <div class="h-[15vh] w-[100%] mt-[19%] ">
+     <a class=" text-center ml-[30%] hover:text-yellow-600 "href="/ladieschild">Exclusive Leather Belts</a>
+     <h1 class=" text-center mt-[5%]">$10.00 $15.00</h1>
+   </div>
+  
+  </div>
+</div>
+</div>
+
+
+
+<div class="footer">
+  <div class="subscribe">
+    <div class="first-subscribe">
+      <h1>Subscribe to our newsletter</h1>
+    </div>
+    <div class="connect ml-[5%]">
+  <form action="/subscribe" method="post">
+    <input type="text" placeholder="Name" name="name">
+    <input type="text" placeholder="Email" name="email">
+    <button class="bg-green-400">Subscribe</button>
+  </form>
+    </div>
+  </div>
+  <div class="pay">
+    <div class="pay-dami">
+      <h1>Company</h1>
+      <h2>About Us</h2>
+      <h3>Careers</h3>
+      <h4>Press</h4>
+      <h5>Sell with Us</h5>
+    </div>
+    <div class="pay-dami">
+      <h1>Help</h1>
+      <h2>Payments</h2>
+      <h3>Shipping</h3>
+      <h4>Return & Cancellation</h4>
+      <h5>FAQ</h5>
+    </div>
+    <div class="pay-dami">
+      <h1>Terms and Policies</h1>
+      <h2>Privacy Policies</h2>
+      <h3>Support Policies</h3>
+      <h4>Terms of Sales</h4>
+      <h6>Pay with</h6>
+      <div class="visa">
+        <a href=""><img src="https://static.zohocdn.com/sites/stock-images/images/zpstock-image-758.png" alt=""></a>
+      </div>
+      
+    </div>
+    <div class="pay-dami">
+      <h1>Contact Us</h1>
+      <h2><i class="ri-phone-line"></i>   +91-7808426662</h2>
+      <h3><a href="https://github.com/dinkarcod780" class="ri-github-line">https://github.com/dinkarcod780</a></h3>
+      <h4><a href="https://www.linkedin.com/in/dinkar-diwakar-038599257/" class="ri-linkedin-box-fill">LinkedIn</a></h4>
+    </div>
+  </div>
+  <div class="pay-line"></div>
+  <div class="names">
+   <h1>Develop By Dinkar Paswan</h1>
+  </div>
+</div>
+
+
+<%- include("partials/footer")%>
